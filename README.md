@@ -46,6 +46,7 @@ Usage example :
 
 ```javascript
 import { withGoogleAnalyticsEvent } from 'react-redux-google-analytics'
+
 export function addItem(itemId) {
     const payload = {
       type: TYPES.AN_ACTION_TYPE,
@@ -59,6 +60,7 @@ Equivalent to :
 
 ```javascript
 import { withGoogleAnalyticsEvent } from 'react-redux-google-analytics'
+
 export function addItem(itemId) {
     return {
       type: TYPES.AN_ACTION_TYPE,
