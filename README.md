@@ -35,7 +35,7 @@ let store = createStore(
 )
 ```
 
-### 3) Add googleAnalyticsEvent payload to an action
+### 3) Attach an event to an action
 
 <pre>
 <b>withGoogleAnalyticsEvent(category, action, [label = ''], 
