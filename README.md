@@ -70,7 +70,7 @@ export const addItem = (itemId) => ({
 ### 4) Trigger page view hit 
 
 <pre>
-gaPageView([page], [fieldsObject]);
+<b>gaPageView([page], [fieldsObject])</b>
 </pre>
 
 Usage with react router
@@ -85,7 +85,6 @@ history.listen((location) => gaPageView(location.pathname + location.search));
 ReactDOM.render((
     <Router history={history}>
         [...]
-
 ```
 
 ### 5) Trigger events outside of redux actions if you like 
