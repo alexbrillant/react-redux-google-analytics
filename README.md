@@ -7,76 +7,90 @@ npm install react-redux-google-analytics --save
 ### 1) Initialize google analytics at the root of your application
 
 <pre>
-<b>initGoogleAnalytics(googleAnalyticsId, propertyId, [onlyInProduction = false])</b>
+<b>initGa(googleAnalyticsId, propertyId, [onlyInProduction = false])</b>
 </pre>
 
 This function initializes google analytics and creates a windowga property. 
 
-### 2) Setup the middleware googleAnayticsEventsMiddleware
+### 2) Setup the middleware gaEventsMiddleware
 
 <pre>
-<b>googleAnayticsEventsMiddleware</b>
+<b>gaEventsMiddleware</b>
 </pre>
 
 Redux middleware for google analytics. 
 
-If an **action has a googleAnalyticsEvent** property, then a google analytics event is triggered with the window.ga property.
+If an **action has a gaEvent** property, then a google analytics event is triggered with the window.ga property.
 
 Usage example: 
 
 ```javascript
 import { createStore, applyMiddleware } from 'redux'
 import todos from './reducers'
-import { googleAnalyticsEventsMiddleware } from 'react-redux-google-analytics'
+import { gaEventsMiddleware } from 'react-redux-google-analytics'
 
 let store = createStore(
   todos,
-  applyMiddleware(googleAnayticsEventsMiddleware)
+  applyMiddleware(gaEventsMiddleware)
 )
 ```
 
 ### 3) Attach an event to an action
 
 <pre>
-<b>withGoogleAnalyticsEvent(category, action, [label = ''], 
+<b>withGaEvent(category, action, [label = ''], 
 [value = 0], [fieldsObject = {}]) => (wrappedPayload)</b>
 </pre>
 
 Usage example : 
 
 ```javascript
-import { withGoogleAnalyticsEvent } from 'react-redux-google-analytics'
+import { withGaEvent } from 'react-redux-google-analytics'
 
-export function addItem(itemId) {
-    const payload = {
-      type: TYPES.AN_ACTION_TYPE,
-    }
-
-    return withGoogleAnalyticsEvent('menu', 'add-item', itemId)(payload)
-}
+export const addItem = (itemId) => withGaEvent('menu', 'add-item', itemId)(
+  {
+    type: TYPES.AN_ACTION_TYPE,
+  }
+)
 ```
 
 Equivalent to : 
 
 ```javascript
-import { withGoogleAnalyticsEvent } from 'react-redux-google-analytics'
-
-export function addItem(itemId) {
-    return {
-      type: TYPES.AN_ACTION_TYPE,
-      googleAnalyticsEvent: {
-        category: 'menu',
-        action: 'add-item',
-        label: itemId
-      }
-    }
-}
+export const addItem = (itemId) => ({
+  type: TYPES.AN_ACTION_TYPE,
+  gaEvent: {
+    category: 'menu',
+    action: 'add-item',
+    label: itemId
+  }
+})
 ```
 
-### 4) You can also trigger events outside of redux actions if you like 
-
+### 4) Trigger page view hit 
 
 <pre>
-<b>triggerGoogleAnalyticsEvent = (category, action, label = '', 
+gaPageView([page], [fieldsObject]);
+</pre>
+
+Usage with react router
+```javascript
+import { gaPageView } from 'react-redux-google-analytics';
+import { createBrowserHistory } from 'history';
+  [...]
+
+const history = createBrowserHistory();
+history.listen((location) => gaPageView(location.pathname + location.search));
+
+ReactDOM.render((
+    <Router history={history}>
+        [...]
+
+```
+
+### 5) Trigger events outside of redux actions if you like 
+
+<pre>
+<b>gaEvent = (category, action, label = '', 
 value = 0, fieldsObject = {})</b>
 </pre>

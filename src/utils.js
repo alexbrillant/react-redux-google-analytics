@@ -4,6 +4,12 @@ export const triggerGoogleAnalyticsEvent = (category, action, label = '', value 
     }
 }
 
+export const triggerGoogleAnalyticsPageView = (page, fieldsObject) => {
+    if (window.ga) {
+        window.ga('send', 'pageview', page, fieldsObject);
+    }
+}
+
 export const initGoogleAnalytics = (googleAnalyticsId, propertyId, onlyInProduction = false) => {
     initGoogleAnalyticsProperty('ga', propertyId, onlyInProduction);
     window.ga('create', `UA-${googleAnalyticsId}-${propertyId}`, { cookieDomain: 'none' });
