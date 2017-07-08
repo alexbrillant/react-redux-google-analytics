@@ -8,6 +8,13 @@
   },
   "author": "Alexandre Brillant",
   "license": "ISC",
+  "keywords": [
+    "react",
+    "google-analytics",
+    "react-redux",
+    "redux",
+    "middleware"
+  ],
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
