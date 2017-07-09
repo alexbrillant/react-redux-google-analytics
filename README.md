@@ -1,8 +1,12 @@
 ## react-redux-google-analytics
 
+### Installation
+
 ```
 npm install react-redux-google-analytics --save
 ```
+
+Contributions are welcome !
 
 ### 1) Initialize google analytics at the root of your application
 
