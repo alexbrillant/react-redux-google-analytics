@@ -1,6 +1,6 @@
 {
   "name": "react-redux-google-analytics",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "react google analytics and redux middleware ",
   "main": "src/index.js",
   "scripts": {
