@@ -11,7 +11,7 @@ export const triggerGoogleAnalyticsPageView = (page, fieldsObject) => {
 }
 
 export const initGoogleAnalytics = (googleAnalyticsId, propertyId, gaOptions = 'auto', onlyInProduction = false) => {
-    initGoogleAnalyticsProperty('ga', propertyId, onlyInProduction);
+    initGoogleAnalyticsProperty('ga', onlyInProduction);
     window.ga('create', `UA-${googleAnalyticsId}-${propertyId}`, gaOptions);
 }
 
