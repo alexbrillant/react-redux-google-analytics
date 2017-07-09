@@ -16,7 +16,7 @@ export const initGoogleAnalytics = (googleAnalyticsId, propertyId, gaOptions = '
 }
 
 export const initGoogleAnalyticsProperty = (propertyName, onlyInProduction = false) => {
-    if (onlyInProduction && process.env.APP_ENV === 'production') {
+    if (onlyInProduction && process.env.APP_ENV !== 'production') {
         return;
     }
 
