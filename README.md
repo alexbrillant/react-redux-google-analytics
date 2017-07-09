@@ -14,6 +14,13 @@ Contributions are welcome !
 <b>initGa(googleAnalyticsId, propertyId, [gaOptions = 'auto'], [onlyInProduction = false])</b>
 </pre>
 
+```javascript
+// root component component did mount
+componentDidMount() {
+  initGa('UA-XXXXX', 'XX')
+}
+```
+
 This function initializes google analytics and creates a windowga property. 
 
 ### 2) Setup the middleware gaEventsMiddleware
