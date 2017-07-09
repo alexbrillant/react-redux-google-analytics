@@ -10,30 +10,22 @@ export const triggerGoogleAnalyticsPageView = (page, fieldsObject) => {
     }
 }
 
-export const initGoogleAnalytics = (googleAnalyticsId, propertyId, onlyInProduction = false) => {
+export const initGoogleAnalytics = (googleAnalyticsId, propertyId, gaOptions = 'auto', onlyInProduction = false) => {
     initGoogleAnalyticsProperty('ga', propertyId, onlyInProduction);
-    window.ga('create', `UA-${googleAnalyticsId}-${propertyId}`, { cookieDomain: 'none' });
+    window.ga('create', `UA-${googleAnalyticsId}-${propertyId}`, gaOptions);
 }
 
-export const initGoogleAnalyticsProperty = (propertyName, propertyId, onlyInProduction = false) => {
+export const initGoogleAnalyticsProperty = (propertyName, onlyInProduction = false) => {
     if (onlyInProduction && process.env.APP_ENV === 'production') {
         return;
     }
 
     /*eslint-disable */
-    ((i, s, o, g, r, a, m) => {
-        i['GoogleAnalyticsObject'] = r;
-        (i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments); }), (i[r].l = 1 * new Date());
-        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m);
-    })(
-        window,
-        document,
-        'script',
-        'https://www.google-analytics.com/analytics.js',
-        propertyName
-        );
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', propertyName);
     /*eslint-enable */
 }

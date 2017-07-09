@@ -7,7 +7,7 @@ npm install react-redux-google-analytics --save
 ### 1) Initialize google analytics at the root of your application
 
 <pre>
-<b>initGa(googleAnalyticsId, propertyId, [onlyInProduction = false])</b>
+<b>initGa(googleAnalyticsId, propertyId, [gaOptions = 'auto'], [onlyInProduction = false])</b>
 </pre>
 
 This function initializes google analytics and creates a windowga property. 
@@ -90,6 +90,6 @@ ReactDOM.render((
 ### 5) Trigger events outside of redux actions if you like 
 
 <pre>
-<b>gaEvent = (category, action, label = '', 
+<b>gaEvent(category, action, label = '', 
 value = 0, fieldsObject = {})</b>
 </pre>
