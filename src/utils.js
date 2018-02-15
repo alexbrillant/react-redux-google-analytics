@@ -17,7 +17,11 @@ export const initGoogleAnalytics = (googleAnalyticsId, propertyId, gaOptions = '
 
 export const initGoogleAnalyticsProperty = (propertyName, onlyInProduction = false) => {
     if (onlyInProduction && process.env.APP_ENV !== 'production') {
+      window.ga = (...args) => {
+        console.log("[Google Analytics] Don't send events in dev environment. - Event: " + JSON.stringify(args));
         return;
+      };
+      return;
     }
 
     /*eslint-disable */
